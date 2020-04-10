@@ -1,0 +1,37 @@
+# https://taskfile.dev
+
+version: '2'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
+
+  taska:
+    cmds:
+    - echo a
+
+  taskb:
+    cmds:
+    - echo b
+
+  test:
+    desc: run tests locally
+    deps:
+      - taska
+      - taskb
+    cmds:
+      - pytest test/* -s
+
+  test-local:
+    desc: local src test
+    cmds:
+      - PYTHONPATH=. task test
+
+
+
+
